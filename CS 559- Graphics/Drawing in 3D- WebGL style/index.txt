@@ -1,0 +1,15 @@
+<html>
+	<head>
+		<title>Program 6</title>
+	</head>
+	<body onload="Init();">
+		<canvas id="Canvas" width="800" height="600">
+			
+		</canvas>
+		<br />
+                <input id="slider" type="range" min="0" max="360" />  
+
+		<script src="gl-matrix.js"></script>
+		<script src="cube2.js"></script>
+	</body>
+</html>
