@@ -1,0 +1,141 @@
+<html>
+<body>
+    <canvas id="myCanvas" width="1000" height="400"></canvas>
+	<br/>
+	<input id="slider" type="range" min="0" max="60" />
+
+</body>
+<script> "use strict"
+  function drawTyres(y){
+//this function draws the tyres for the dumptruck
+  var canvas = document.getElementById('myCanvas');     
+  var context = canvas.getContext('2d');
+ 
+    context.beginPath();
+   
+    context.arc(100+y,290,50,0,2*Math.PI);
+    //wheel 1
+    context.fillStyle = "grey";
+    context.fill();
+    context.stroke();
+    context.beginPath();
+    context.moveTo(100+y,270);
+    context.lineTo(100+y,310);
+    context.stroke();
+    context.beginPath();
+    context.moveTo(y+80,290);
+    context.lineTo(120+y,290);
+    context.stroke();
+      
+        context.beginPath();
+      
+    context.arc(y+400,290,50,0,2*Math.PI);
+//wheel 2
+    context.fillStyle = "grey";
+    context.fill();
+       context.stroke();
+      context.beginPath();
+context.moveTo(380+y,290);
+context.lineTo(420+y,290);
+context.stroke();
+      context.beginPath();
+context.moveTo(400+y,270);
+context.lineTo(400+y,310);
+context.stroke();
+        context.beginPath();
+   
+    context.arc(250+y,290,50,0,2*Math.PI);
+    //wheel 3
+    context.fillStyle = "grey";
+    context.fill();
+       context.stroke();
+      context.beginPath();
+context.moveTo(250+y,310);
+context.lineTo(250+y,270);
+context.stroke();
+      context.beginPath();
+context.moveTo(230+y,290);
+context.lineTo(270+y,290);
+context.stroke();
+  }
+  function truckNotMove(y){
+ // draws the parts that don't move with slider
+    var canvas = document.getElementById('myCanvas');
+		var slider = document.getElementById('slider');
+		
+         
+      var context = canvas.getContext('2d');
+     
+    
+    drawTyres(y);
+   // calls to draw tyres
+    context.beginPath();
+    
+       context.rect(y+400,110,70,140);
+          context.fillStyle="#800";
+         context.fill();
+      
+     context.moveTo(y+470,110);
+      context.beginPath();
+         context.rect(y+470,160,40,90);
+          context.fillStyle="#800";
+         context.fill();
+      
+      context.beginPath();
+         context.rect(y-10,250,530,20);
+          context.fillStyle="blue";
+         context.fill();
+        context.beginPath();
+         context.rect(y+410,125,50,30);
+          context.fillStyle="white";
+         context.fill();  
+  }
+  
+    function drawMove(y) {
+    //draws parts that move with a slider
+     var canvas = document.getElementById('myCanvas');
+		var slider = document.getElementById('slider');
+  //slider to control dump cart's rotation
+	
+      var context = canvas.getContext('2d');
+   
+      canvas.width = canvas.width; //erases to reposition object
+     
+       truckNotMove(y);
+        //redraws the parts that don't move with the slider after being erased
+        context.beginPath();
+      var x = ((slider.value)/180)*-1;
+      context.rotate(x);
+// to rotates the dump cart
+      context.rect(y,50,400,200);
+          context.fillStyle="grey";
+         context.fill();
+      context.closePath();
+	  
+  }
+  function setup(){
+//this setup helps use requestANimationFrame to loop the truck to move forward
+     var y = 50;
+		var canvas = document.getElementById('myCanvas');
+		var slider = document.getElementById('slider');
+		slider.value = 0;
+  function draw(){
+  //draws the whole truck
+       y = (y + 0.1) % 100;
+        truckNotMove();
+        drawMove(y);
+    
+    
+   window.requestAnimationFrame(draw);
+  };
+    window.requestAnimationFrame(draw);
+  }
+  
+    	window.onload = setup;	
+</script>
+<head>
+  <meta name="description" content="E4 - Slider Animation">
+  <meta charset="utf-8">
+  <title>Slider Animation Example</title>
+</head>
+</html>

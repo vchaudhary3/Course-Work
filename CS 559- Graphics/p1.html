@@ -1,0 +1,69 @@
+<html>
+<body style="background-color:violet;">
+  <h1>Hi! </h1>
+	<canvas id="myCanvas" width="500" height="500"></canvas>
+</body>
+<script> "use strict" <!--the next four lines, including this one, is from the example-->
+	window.onload = function() {
+		var canvas = document.getElementById('myCanvas');
+		var context = canvas.getContext('2d');
+		
+    context.beginPath();
+    context.moveTo(350,200);
+    context.arc(250,200,100,0,2*Math.PI);
+    context.fillStyle = "grey";
+    context.fill();
+    context.strokeStyle = "red";
+    context.stroke();
+    
+    context.beginPath();
+    context.moveTo(357,200);
+    context.arc(250,200,107,0,2*Math.PI);
+    context.strokeStyle = "red";
+    context.stroke();
+    
+    context.beginPath();
+    context.moveTo(250,100);
+    context.lineTo(250+(50*Math.pow(3,0.5)),250);
+    context.lineTo(250-(50*Math.pow(3,0.5)),250);
+    context.fillStyle="#800";
+    context.fill();
+    context.closePath();
+    context.strokeStyle = "yellow";
+    context.stroke();
+    
+    context.moveTo(250,300);
+    context.lineTo(250+(50*Math.pow(3,0.5)),150);
+    context.lineTo(250-(50*Math.pow(3,0.5)),150);
+    context.closePath();
+    context.fillStyle="green";
+    context.fill();
+    context.stroke();
+    
+     context.beginPath();
+    context.moveTo(250,107);
+    context.lineTo(250+(50*Math.pow(3,0.5)-7),246);
+    context.lineTo(250-(50*Math.pow(3,0.5)-7),246);
+   
+    context.closePath();
+    context.strokeStyle = "blue";
+    context.stroke();
+    
+    context.moveTo(250,293);
+    context.lineTo(250+(50*Math.pow(3,0.5)-7),154);
+    context.lineTo(250-(50*Math.pow(3,0.5)-7),154);
+    context.closePath();
+    
+    context.stroke();
+    
+    
+    
+    };
+  
+</script> <!--the next four lines, including this one, is from the example-->
+<head>
+  <meta name="author" content="Vedantika Chaudhary">
+  <meta charset="utf-8">
+
+</head>
+</html>
