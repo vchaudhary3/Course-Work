@@ -1,0 +1,32 @@
+precision highp float;
+attribute vec3 position;
+attribute vec3 normal;
+uniform float time;
+uniform mat3 normalMatrix;
+uniform mat4 modelViewMatrix;
+uniform mat4 projectionMatrix;
+varying vec3 fNormal;
+varying vec3 fPosition;
+varying vec3 uPos;
+varying vec3 uNormal;
+varying vec3 dtPos;
+float PI = 3.14159;
+
+void main()
+{
+  uNormal = normal;
+  fNormal = normalize(normalMatrix * normal);
+  vec4 pos = vec4(position.x + 
+                    .5*cos(0.5*3.8*position.y + 8.0*time),
+                  position.y*0.89,
+                  position.z + 
+                    .5*cos(PI*position.y + 8.0*(time*5.67)),
+                  1.0);
+  dtPos = vec3(4.0*cos(0.5*position.y + 8.0*time),
+              0,
+              -4.0*sin(0.5*position.y + 8.0*time));
+  uPos = pos.xyz;
+  pos = modelViewMatrix * pos;
+  fPosition = pos.xyz;
+  gl_Position = projectionMatrix * pos;
+}

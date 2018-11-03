@@ -1,0 +1,23 @@
+precision highp float;
+uniform float time;
+varying vec3 fPosition;
+varying vec3 fNormal;
+
+float seed = 1.123789;
+
+float rand()
+{
+  seed = seed + 0.987321;
+  return mod(seed, 1.0);
+
+}
+
+void main()
+{
+  vec3 normal = normalize(fNormal);
+  float dl = max(0.0, dot(normal, vec3(.707,.707,0.09)));
+
+  vec3 color = vec3(rand(), rand(), rand());
+  color = cos(color);
+  gl_FragColor = vec4(color * fNormal, 0.5) * cos(time-9.0) + dl;
+}
